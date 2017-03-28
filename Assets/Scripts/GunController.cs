@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunController : MonoBehaviour {
 
 	public Camera camera;
+
 	public Transform shotspawn;
 	public GameObject shot;
 	public float fireRate;
@@ -12,13 +13,13 @@ public class GunController : MonoBehaviour {
 
 
 	void Start(){
-
+		
 	}
 
 	void Update () {
 
 		//Turn character to face the mouse
-		var target = camera.ScreenToWorldPoint (new Vector3(Input.mousePosition.x,Input.mousePosition.y,camera.nearClipPlane)); 
+		var target = camera.ScreenToWorldPoint (new Vector3(Input.mousePosition.x,Input.mousePosition.y,camera.nearClipPlane));
 
 		transform.LookAt (target, Vector3.forward);
 		transform.eulerAngles = new Vector3 (0, 0, -transform.eulerAngles.z); 
