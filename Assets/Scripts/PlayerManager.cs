@@ -19,7 +19,10 @@ public class PlayerManager : MonoBehaviour
 	}
 
 	public void hit(int dmg){
-		Health = Health - dmg;
+
+		if (Health > 0) {
+			Health = Health - dmg;
+		}
 
 		if (Health <= 0) {
 			enabled = false;

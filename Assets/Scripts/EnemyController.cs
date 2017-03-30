@@ -13,9 +13,12 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void hit(int dmg){
-		Health = Health - dmg;
 
-		if (Health < 0) {
+		if (Health > 0) {
+			Health = Health - dmg;
+		}
+
+		if (Health <= 0) {
 			DestroyObject (gameObject);
 		}
 	}
