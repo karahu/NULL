@@ -2,31 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-	public int Health;
+	public int health;
 	public Slider hp_slider;
 
-	public static PlayerManager Instance;
-
-	void Awake(){
-		Instance = this;
-	}
-
 	void Update(){
-		hp_slider.value = Health;
+		hp_slider.value = health;
 	}
 
-	public void hit(int dmg){
+	void Hit(int dmg){
 
-		if (Health > 0) {
-			Health = Health - dmg;
+		if (health > 0) {
+			health = health - dmg;
 		}
 
-		if (Health <= 0) {
-			enabled = false;
-			Application.LoadLevel (Application.loadedLevel);
+		if (health <= 0) {
+			gameObject.SetActive (false);
+		}
+	}
+
+	public void OnTriggerEnter2D(Collider2D other){
+		if (other.CompareTag ("Bullet")) {
+			Hit (other.GetComponent<DestroyByContact> ().damage);
+
 		}
 	}
 }

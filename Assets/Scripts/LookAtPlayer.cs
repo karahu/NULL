@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour {
 
-	public Transform player;
 	public GameObject shot;
 	public Transform Shotspawn;
 	public float fireRate;
 	public float delay;
 	public float speed;
 	public float enemyType;
-	public float chase = 0;
 
+	private GameObject player;
+	private float chase = 0;
 	private Rigidbody2D rb;
 
 	void Start(){
 
 		rb = GetComponent<Rigidbody2D> ();
+
+		player = GameObject.FindGameObjectWithTag ("Player");
 
 		//Decides what the enemy is supposed to do
 		if (enemyType == 1) {
@@ -40,7 +42,7 @@ public class LookAtPlayer : MonoBehaviour {
 
 	void FixedUpdate () {
 		//Looks at player
-		float z = Mathf.Atan2 ((player.position.y - transform.position.y), (player.position.x - transform.position.x)) * Mathf.Rad2Deg - 90;
+		float z = Mathf.Atan2 ((player.transform.position.y - transform.position.y), (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90;
 
 		transform.eulerAngles = new Vector3 (0, 0, z);
 

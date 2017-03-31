@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-	public int Health;
+	public int health;
 
-	public static EnemyController Instance;
 
-	void Awake(){
-		Instance = this;
-	}
+	void Hit(int dmg){
 
-	public void hit(int dmg){
-
-		if (Health > 0) {
-			Health = Health - dmg;
+		if (health > 0) {
+			health = health - dmg;
 		}
 
-		if (Health <= 0) {
+		if (health <= 0) {
 			DestroyObject (gameObject);
+		}
+	}
+
+	public void OnTriggerEnter2D(Collider2D other){
+		if (other.CompareTag ("Bullet")) {
+			Hit (other.GetComponent<DestroyByContact> ().damage);
+
 		}
 	}
 }
