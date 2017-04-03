@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GunController : MonoBehaviour {
 
@@ -11,9 +12,19 @@ public class GunController : MonoBehaviour {
 	public float fireRate;
 	public float nextFire;
 
+	public GameObject gun;
 
 	void Start(){
-		
+
+		if (SceneManager.GetActiveScene ().name == "Main") {
+			nextFire = Mathf.Infinity;
+			gun.SetActive (false);
+		} else if (SceneManager.GetActiveScene ().name != "Main") {
+			nextFire = 0;
+			gun.SetActive (true);
+		}
+
+
 	}
 
 	void Update () {
