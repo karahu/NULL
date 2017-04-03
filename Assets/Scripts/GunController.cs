@@ -11,11 +11,14 @@ public class GunController : MonoBehaviour {
 	public GameObject shot;
 	public float fireRate;
 	public float nextFire;
-
+	public Animator anim;
 	public GameObject gun;
 
 	void Start(){
 
+		anim = GetComponent<Animator> ();
+
+		//Checks what chene is active
 		if (SceneManager.GetActiveScene ().name == "Main") {
 			nextFire = Mathf.Infinity;
 			gun.SetActive (false);
