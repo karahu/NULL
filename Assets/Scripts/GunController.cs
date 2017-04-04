@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GunController : MonoBehaviour {
 
@@ -11,13 +12,16 @@ public class GunController : MonoBehaviour {
 	public GameObject shot;
 	public float fireRate;
 	public float nextFire;
-	public Animator anim;
 	public GameObject gun;
+	public float ammo;
+	public float maxAmmo;
+	public Text ammoText;
+	public Text reloadText;
+	public float reloadTime;
+	public float reloadWait;
 
 	void Start(){
-
-		anim = GetComponent<Animator> ();
-
+		
 		//Checks what chene is active
 		if (SceneManager.GetActiveScene ().name == "Main") {
 			nextFire = Mathf.Infinity;
@@ -26,8 +30,6 @@ public class GunController : MonoBehaviour {
 			nextFire = 0;
 			gun.SetActive (true);
 		}
-
-
 	}
 
 	void Update () {
@@ -41,15 +43,23 @@ public class GunController : MonoBehaviour {
 		//Calls shoot function
 		Shoot ();
 
+		ammoText.text = ammo.ToString ();
 	}
 
 	void Shoot(){
 
-		//Checks if player is pressing the mouse1 button and fires
-		if (Input.GetButton ("Fire1") && Time.time > nextFire) {
+		//Checks if player is allowed to shoot and shoots
+		if (Input.GetButton ("Fire1") && Time.time > nextFire && ammo > 0) {
+			ammo = ammo -1;
 			nextFire = Time.time + fireRate;	
 			Instantiate (shot, shotspawn.position, shotspawn.rotation);
 
+		} else if (ammo == 0) {
+			//Reloading (kinda broken) 
+			if(Time.time > reloadWait){
+				reloadWait = Time.time + reloadTime;
+				ammo = maxAmmo;
+			}
 		}
 
 	}

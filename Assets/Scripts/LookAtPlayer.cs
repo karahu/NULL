@@ -9,6 +9,7 @@ public class LookAtPlayer : MonoBehaviour {
 	public float fireRate;
 	public float delay;
 	public float speed;
+	public float extraSpeed;
 	public float enemyType;
 
 	private GameObject player;
@@ -24,8 +25,9 @@ public class LookAtPlayer : MonoBehaviour {
 		//Decides what the enemy is supposed to do
 		if (enemyType == 1) {
 			InvokeRepeating ("Shoot", delay, fireRate);
-		} else if (enemyType == 0) {
 			chase = 1;
+		} else if (enemyType == 0) {
+			chase = 2;
 		}
 	}
 	//Shoots at player
@@ -37,6 +39,8 @@ public class LookAtPlayer : MonoBehaviour {
 		//Chases player
 		if (chase == 1) {
 			rb.velocity = transform.up * speed;
+		} else if (chase == 2) {
+			rb.velocity = transform.up * speed * extraSpeed;
 		}
 	}
 
@@ -46,10 +50,5 @@ public class LookAtPlayer : MonoBehaviour {
 
 		transform.eulerAngles = new Vector3 (0, 0, z);
 
-
-
 	}
-
-
-
 }

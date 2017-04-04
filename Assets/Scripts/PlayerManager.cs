@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
 	public int health;
+	public int maxHealth;
 	public Slider hp_slider;
+	public Text hp_text;
 
 	void Update(){
 		hp_slider.value = health;
+		hp_text.text = health.ToString() + "/" + maxHealth.ToString() ;
 	}
 
 	void Hit(int dmg){
