@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
 	public Slider hp_slider;
 	public Text hp_text;
 
+	private bool iframe;
+
 	void Update(){
 		hp_slider.value = health;
 		hp_text.text = health.ToString() + "/" + maxHealth.ToString() ;
@@ -18,19 +20,31 @@ public class PlayerManager : MonoBehaviour
 
 	void Hit(int dmg){
 
-		if (health > 0) {
-			health = health - dmg;
-		}
+		if (!iframe) {
+			if (health > 0) {
+				health = health - dmg;
+				iframe = true;
+				Invoke ("iframeReset", 1);
+			}
 
-		if (health <= 0) {
-			gameObject.SetActive (false);
+			if (health <= 0) {
+				gameObject.SetActive (false);
+			}
 		}
 	}
 
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Bullet")) {
 			Hit (other.GetComponent<DestroyByContact> ().damage);
-
 		}
+	}
+	public void OnTriggerStay2D(Collider2D other){
+		if (other.CompareTag ("Enemy")) {
+			Hit (other.GetComponent<EnemyController> ().damage);
+		}
+	}
+
+	void iframeReset(){
+		iframe = false;
 	}
 }

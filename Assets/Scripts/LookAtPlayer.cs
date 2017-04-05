@@ -11,7 +11,11 @@ public class LookAtPlayer : MonoBehaviour {
 	public float speed;
 	public float extraSpeed;
 	public float enemyType;
+	public float range;
+	public bool inRange = false;
 
+	private float shoot;
+	private float distance;
 	private GameObject player;
 	private float chase = 0;
 	private Rigidbody2D rb;
@@ -32,23 +36,40 @@ public class LookAtPlayer : MonoBehaviour {
 	}
 	//Shoots at player
 	void Shoot(){
-		Instantiate (shot, Shotspawn.position, Shotspawn.rotation);
+		if(player != null){
+			if (inRange) {
+				Instantiate (shot, Shotspawn.position, Shotspawn.rotation);
+			}
+		}
 	}
 
 	void Update(){
 		//Chases player
-		if (chase == 1) {
-			rb.velocity = transform.up * speed;
-		} else if (chase == 2) {
-			rb.velocity = transform.up * speed * extraSpeed;
+		if (player != null) {	
+			if (chase == 1) {
+				rb.velocity = transform.up * speed;
+			} else if (chase == 2) {
+				rb.velocity = transform.up * speed * extraSpeed;
+			}
+		
+			//Checks if player is in range
+			distance = Vector3.Distance (transform.position, player.transform.position);
+			if (distance <= range) {
+				inRange = true;
+			} else {
+				inRange = false;
+			}
+		} else {
+			chase = 0;
 		}
 	}
 
 	void FixedUpdate () {
 		//Looks at player
-		float z = Mathf.Atan2 ((player.transform.position.y - transform.position.y), (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90;
+		if (player != null) {
+			float z = Mathf.Atan2 ((player.transform.position.y - transform.position.y), (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90;
 
-		transform.eulerAngles = new Vector3 (0, 0, z);
-
+			transform.eulerAngles = new Vector3 (0, 0, z);
+		} 
 	}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour {
 
 	public int health;
-
+	public int damage;
 
 	void Hit(int dmg){
 

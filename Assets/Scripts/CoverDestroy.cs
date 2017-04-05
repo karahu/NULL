@@ -24,14 +24,11 @@ public class CoverDestroy : MonoBehaviour {
 			renderer.color = new Color (0, 0, 0, 255f);
 			collider.enabled = false;
 		}
-
-
 	}
 
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Bullet")) {
 			Hit (other.GetComponent<DestroyByContact> ().damage);
-
 		}
 	}
 }

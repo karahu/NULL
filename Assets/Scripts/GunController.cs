@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour {
 	public Text ammoText;
 	public Text reloadText;
 	public float reloadTime;
-	public float reloadWait;
+	private bool reloading = false;
 
 	void Start(){
 		
@@ -42,25 +42,30 @@ public class GunController : MonoBehaviour {
 
 		//Calls shoot function
 		Shoot ();
-
-		ammoText.text = ammo.ToString ();
 	}
 
 	void Shoot(){
-
+		ammoText.text = ammo.ToString ();
 		//Checks if player is allowed to shoot and shoots
 		if (Input.GetButton ("Fire1") && Time.time > nextFire && ammo > 0) {
 			ammo = ammo -1;
 			nextFire = Time.time + fireRate;	
 			Instantiate (shot, shotspawn.position, shotspawn.rotation);
 
-		} else if (ammo == 0) {
-			//Reloading (kinda broken) 
-			if(Time.time > reloadWait){
-				reloadWait = Time.time + reloadTime;
-				ammo = maxAmmo;
+		} else if (ammo == 0 && reloading == false || Input.GetButtonDown("Reload") && reloading == false) {
+			//Reloading
+			ammo = 0;
+			reloading = true;
+			reloadText.text = "Reloading...";
+			Invoke("Reload",reloadTime);
 			}
-		}
-
 	}
+
+	void Reload(){
+		ammo = maxAmmo;
+		reloadText.text = "";
+		reloading = false;
+	}
+
 }
+
