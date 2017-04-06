@@ -1,17 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GunController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CoverDestroy.cs">
     <Files>
-      <File FileName="Assets/Scripts/EnemyManager.cs" Line="19" Column="21" />
-      <File FileName="Assets/Scripts/GunController.cs" Line="58" Column="31" />
-      <File FileName="Assets/Scripts/PlayerManager.cs" Line="16" Column="1" />
-      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EnemyManager.cs" Line="16" Column="20" />
+      <File FileName="Assets/Scripts/GunController.cs" Line="60" Column="32" />
+      <File FileName="Assets/Scripts/PlayerManager.cs" Line="47" Column="19" />
+      <File FileName="Assets/Scripts/PlayerMovement.cs" Line="13" Column="3" />
       <File FileName="Assets/Scripts/mover.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DestroyByContact.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/LookAtPlayer.cs" Line="43" Column="52" />
-      <File FileName="Assets/Scripts/EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/LevelTransition.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CoverDestroy.cs" Line="25" Column="29" />
+      <File FileName="Assets/Scripts/DestroyByContact.cs" Line="9" Column="46" />
+      <File FileName="Assets/Scripts/LookAtPlayer.cs" Line="12" Column="92" />
+      <File FileName="Assets/Scripts/EnemyController.cs" Line="22" Column="39" />
+      <File FileName="Assets/Scripts/LevelTransition.cs" Line="22" Column="40" />
+      <File FileName="Assets/Scripts/CoverDestroy.cs" Line="30" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

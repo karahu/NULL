@@ -8,8 +8,8 @@ public class LookAtPlayer : MonoBehaviour {
 	public Transform Shotspawn;
 	public float fireRate;
 	public float delay;
-	public float speed;
-	public float extraSpeed;
+	public float speed; //base speed of the enemy
+	public float extraSpeed; // extra speed aplied to melee only enemies to make them a threat
 	public float enemyType;
 	public float range;
 	public bool inRange = false;

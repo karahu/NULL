@@ -10,6 +10,7 @@ public class LevelTransition : MonoBehaviour {
 
 	private bool player; 
 
+	//Cheks if player is near the intractable object
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Player")) {
 			player = true;
@@ -18,10 +19,12 @@ public class LevelTransition : MonoBehaviour {
 
 	}
 
+	//Reset the text if players moves away
 	void OnTriggerExit2D(Collider2D other){
 		SleepText.text = "";
 	}
 
+	//Changes level if conditions are met
 	void Update(){
 		if (Input.GetButtonUp("Use") && player) {
 			SceneManager.LoadScene ("Arena");

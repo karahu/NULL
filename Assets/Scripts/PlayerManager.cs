@@ -10,16 +10,37 @@ public class PlayerManager : MonoBehaviour
 	public int maxHealth;
 	public Slider hp_slider;
 	public Text hp_text;
+	public bool dead = false;
+	public Text reloadText;
 
+	private Rigidbody2D rb;
+	private GameObject gun;
+	private GunController guncont;
+	private PlayerMovement pcmove;
+	private Collider2D collider;
 	private bool iframe;
 
+	void Start(){
+		pcmove = GetComponent<PlayerMovement> ();
+		gun = GameObject.FindGameObjectWithTag ("Gun");
+		guncont = gun.GetComponent<GunController> ();
+		collider = GetComponent<Collider2D> ();
+		rb = GetComponent<Rigidbody2D> ();
+	}
+
 	void Update(){
+		//Updating hp bar
 		hp_slider.value = health;
 		hp_text.text = health.ToString() + "/" + maxHealth.ToString() ;
+
+		//Restart
+		if (dead && Input.GetButtonUp ("Reload")) {
+			SceneManager.LoadScene ("Main");
+		}
 	}
 
 	void Hit(int dmg){
-
+		//Taking dmg & dying
 		if (!iframe) {
 			if (health > 0) {
 				health = health - dmg;
@@ -28,11 +49,16 @@ public class PlayerManager : MonoBehaviour
 			}
 
 			if (health <= 0) {
-				gameObject.SetActive (false);
+				guncont.enabled = false;
+				pcmove.enabled = false;
+				collider.enabled = false;
+				rb.velocity = new Vector2 (0, 0);
+				dead = true;
+				reloadText.text = "Press 'R' to restart";
 			}
 		}
 	}
-
+	//Checks if player gets hit
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Bullet")) {
 			Hit (other.GetComponent<DestroyByContact> ().damage);
@@ -43,7 +69,7 @@ public class PlayerManager : MonoBehaviour
 			Hit (other.GetComponent<EnemyController> ().damage);
 		}
 	}
-
+	//Reset the iframe
 	void iframeReset(){
 		iframe = false;
 	}

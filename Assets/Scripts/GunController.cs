@@ -58,7 +58,7 @@ public class GunController : MonoBehaviour {
 			reloading = true;
 			reloadText.text = "Reloading...";
 			Invoke("Reload",reloadTime);
-			}
+		}
 	}
 
 	void Reload(){

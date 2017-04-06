@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour {
 	public int health;
 	public int damage;
 
+	//Taking dmg
 	void Hit(int dmg){
 
 		if (health > 0) {
@@ -18,6 +19,7 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+	//Checks if the enemy gets hit or not
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Bullet")) {
 			Hit (other.GetComponent<DestroyByContact> ().damage);

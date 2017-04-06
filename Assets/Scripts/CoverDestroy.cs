@@ -15,6 +15,7 @@ public class CoverDestroy : MonoBehaviour {
 		collider = GetComponent<Collider2D> ();
 	}
 
+	//Takind dmg
 	void Hit(int dmg){
 		if (health > 0) {
 			health -= dmg;
@@ -26,6 +27,7 @@ public class CoverDestroy : MonoBehaviour {
 		}
 	}
 
+	//Checks if the object got hit
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Bullet")) {
 			Hit (other.GetComponent<DestroyByContact> ().damage);
