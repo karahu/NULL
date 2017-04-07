@@ -55,6 +55,7 @@ public class PlayerManager : MonoBehaviour
 				rb.velocity = new Vector2 (0, 0);
 				dead = true;
 				reloadText.text = "Press 'R' to restart";
+				PlayerPrefs.DeleteKey ("Round");
 			}
 		}
 	}

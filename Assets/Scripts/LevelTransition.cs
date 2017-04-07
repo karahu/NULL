@@ -27,6 +27,11 @@ public class LevelTransition : MonoBehaviour {
 	//Changes level if conditions are met
 	void Update(){
 		if (Input.GetButtonUp("Use") && player) {
+			if (PlayerPrefs.HasKey ("Round") == false) {
+				PlayerPrefs.SetInt ("Round", 1);
+			} else {
+				PlayerPrefs.SetInt ("Round", PlayerPrefs.GetInt ("Round") + 1);
+			}
 			SceneManager.LoadScene ("Arena");
 		}
 	}
