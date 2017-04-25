@@ -8,6 +8,6 @@ public class DestroyByContact : MonoBehaviour {
 
 	//Destrois the bullet when it hits something
 	void OnTriggerEnter2D(Collider2D other) {
-		Destroy (gameObject);
+		Destroy (gameObject, .01f);
 	}
 }

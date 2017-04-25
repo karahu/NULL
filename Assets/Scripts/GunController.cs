@@ -22,7 +22,7 @@ public class GunController : MonoBehaviour {
 
 	void Start(){
 		
-		//Checks what chene is active
+		//Checks what scene is active
 		if (SceneManager.GetActiveScene ().name == "Main") {
 			nextFire = Mathf.Infinity;
 			gun.SetActive (false);

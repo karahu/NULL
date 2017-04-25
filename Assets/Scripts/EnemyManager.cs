@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour {
 
 	void Update(){
 		if (GameObject.FindGameObjectWithTag("Enemy") == null && done == true) {
-			txt.text = "Press 'Enter' to return to your chell";
+			txt.text = "Press 'Enter' to return to your shell";
 			if( Input.GetButtonUp ("Submit")){
 				SceneManager.LoadScene ("Main");
 			}
