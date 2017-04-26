@@ -7,10 +7,11 @@ public class MenuManager : MonoBehaviour {
 
 	void Start(){
 		PlayerPrefs.DeleteKey ("Round");
-		if (PlayerPrefs.HasKey("Gun") == true) {
-			PlayerPrefs.DeleteKey("Gun");
-		}
+		PlayerPrefs.DeleteKey("Gun");
+		PlayerPrefs.DeleteKey("Money");
+
 		PlayerPrefs.SetInt("Gun", 1);
+		PlayerPrefs.SetInt("Money", 0);
 	}
 
 	public void LoadScene(int id){

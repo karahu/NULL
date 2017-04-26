@@ -6,6 +6,9 @@ public class EnemyController : MonoBehaviour {
 
 	public int health;
 	public int damage;
+	public GameObject money;
+
+	private float moneyrot;
 
 	//Taking dmg
 	void Hit(int dmg){
@@ -15,7 +18,7 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		if (health <= 0) {
-			DestroyObject (gameObject);
+			Death();
 		}
 	}
 
@@ -25,5 +28,10 @@ public class EnemyController : MonoBehaviour {
 			Hit (other.GetComponent<DestroyByContact> ().damage);
 
 		}
+	}
+
+	void Death(){
+		Destroy(gameObject);
+		Instantiate(money, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
 	}
 }

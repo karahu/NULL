@@ -10,7 +10,7 @@ public class mover : MonoBehaviour {
 
 	//Moves the bullets forward
 
-	void Start(){
+	void Awake(){
 		rb = GetComponent<Rigidbody2D> ();
 		rb.velocity = transform.up * speed;
 	}
