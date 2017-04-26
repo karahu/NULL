@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
 	public Text hp_text;
 	public bool dead = false;
 	public Text reloadText;
+	public GameObject deathScreen;
 
 	private Rigidbody2D rb;
 	private GameObject gun;
@@ -56,6 +57,7 @@ public class PlayerManager : MonoBehaviour
 				dead = true;
 				reloadText.text = "Press 'R' to restart";
 				PlayerPrefs.DeleteKey ("Round");
+				deathScreen.SetActive(true);
 			}
 		}
 	}
@@ -73,5 +75,17 @@ public class PlayerManager : MonoBehaviour
 	//Reset the iframe
 	void iframeReset(){
 		iframe = false;
+	}
+
+	public void Restart(){
+		SceneManager.LoadScene ("Main");
+	}
+
+	public void MainMenu(){
+		SceneManager.LoadScene("Menu");
+	}
+
+	public void Exit(){
+		Application.Quit();
 	}
 }
