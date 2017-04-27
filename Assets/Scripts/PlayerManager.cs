@@ -57,6 +57,8 @@ public class PlayerManager : MonoBehaviour
 				dead = true;
 				reloadText.text = "Press 'R' to restart";
 				PlayerPrefs.DeleteKey ("Round");
+				PlayerPrefs.DeleteKey ("Money");
+				PlayerPrefs.DeleteKey ("Gun");
 				deathScreen.SetActive(true);
 			}
 		}

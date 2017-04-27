@@ -8,13 +8,15 @@ public class StoreScript : MonoBehaviour {
 	public Text infoText;
 	public int gun_id;
 	public GameObject storeUI;
+	public int[] cost;
+	public Text moneyText;
+	public GameObject[] guns;
 
 	private bool player = false;
-	public GameObject[] guns;
 	private int i = 0;
 
 	void Start () {
-		
+		storeUI.SetActive(false);
 	}
 
 	//Interacting with store
@@ -22,6 +24,7 @@ public class StoreScript : MonoBehaviour {
 		if (player && Input.GetButtonUp("Use")) {
 			storeUI.SetActive(true);
 		}
+		moneyText.text = PlayerPrefs.GetInt("Money").ToString();
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -39,10 +42,12 @@ public class StoreScript : MonoBehaviour {
 
 	//Set the new gun as active
 	public void GunPurchase(int id){
-		GunDisable();
-		guns[id].SetActive(true);
-		PlayerPrefs.SetInt("Gun", id);
-		//Debug.Log(PlayerPrefs.GetInt(""))
+		while (PlayerPrefs.GetInt("Money") >= cost[id]) {
+			PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - cost[id]);
+			GunDisable();
+			guns[id].SetActive(true);
+			PlayerPrefs.SetInt("Gun", id);
+		}
 	}
 
 	//Set all guns as inactive

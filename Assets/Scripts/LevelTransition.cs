@@ -22,6 +22,7 @@ public class LevelTransition : MonoBehaviour {
 	//Reset the text if players moves away
 	void OnTriggerExit2D(Collider2D other){
 		SleepText.text = "";
+		player = false;
 	}
 
 	//Changes level if conditions are met
