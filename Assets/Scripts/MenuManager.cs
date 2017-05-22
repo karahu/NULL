@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour {
 		PlayerPrefs.DeleteKey("Gun");
 		PlayerPrefs.DeleteKey("Money");
 
-		PlayerPrefs.SetInt("Gun", 1);
+		PlayerPrefs.SetInt("Gun", 0);
 		PlayerPrefs.SetInt("Money", 0);
 	}
 
